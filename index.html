@@ -761,7 +761,7 @@
       left: 0;
     }
 
-    /* Отзывы */
+    /* Отзывы - исправленная версия */
     .reviews-container {
       background-color: white;
       border-radius: 12px;
@@ -800,12 +800,14 @@
       font-size: 0.95rem;
       color: var(--purple-dark);
       font-weight: 600;
+      display: flex;
+      flex-direction: column;
     }
 
     .review-rating {
       color: var(--orange);
       font-size: 0.85rem;
-      margin-left: 0.5rem;
+      margin-top: 0.2rem;
     }
 
     .review-text {
@@ -837,7 +839,6 @@
       align-items: center;
       gap: 0.5rem;
     }
-
     /* FAQ */
     .faq-item {
       background-color: white;
@@ -1373,7 +1374,6 @@
       
       .process-step {
         padding: 0.8rem 0.8rem 0.8rem 2.5rem;
-        min-height: 120px;
       }
       
       .process-step::before {
@@ -1386,11 +1386,23 @@
       
       /* Адаптация карточек целевых групп */
       .group-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        gap: 0.8rem;
       }
       
       .group-card {
-        padding: 1.5rem;
+        padding: 1rem;
+        min-height: 220px;
+      }
+      
+      .group-card h5 {
+        font-size: 1rem;
+      }
+      
+      .group-card li {
+        font-size: 0.85rem;
+        padding-left: 1.2rem;
+        margin-bottom: 0.5rem;
       }
       
       .form-container {
@@ -1415,6 +1427,7 @@
       }
 
       /* Показываем кнопку "Читать полностью" только на мобильных */
+    /* Показываем кнопку "Читать полностью" только на мобильных */
       .review-text {
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -1428,6 +1441,16 @@
       
       .review-text.expanded {
         -webkit-line-clamp: unset;
+      }
+      
+      /* Исправляем отображение мета-информации в отзывах */
+      .review-header {
+        flex-wrap: wrap;
+      }
+      
+      .review-meta {
+        flex: 1;
+        min-width: 200px;
       }
     }
 
@@ -1446,6 +1469,10 @@
       /* На очень маленьких экранах делаем карточки в один столбец */
       .advantages-grid,
       .process-steps {
+        grid-template-columns: 1fr;
+      }
+      
+      .group-cards {
         grid-template-columns: 1fr;
       }
       
@@ -1497,6 +1524,10 @@
       
       .highlight-text p {
         padding: 0.8rem;
+      }
+      
+      .group-card {
+        min-height: auto;
       }
     }
   </style>
@@ -1768,35 +1799,50 @@
       </div>
 
       <div class="review" style="display:none">
-        <img src="avatar5.jpg" alt="Саша" class="review-avatar">
-        <div class="review-content">
-          <div class="review-meta">Саша, ученик 8 класса</div>
-<span class="review-rating">★★★★★</span>
-          <p class="review-text">Мне нравится, что на уроках не просто теория, а много практики! После каждого занятия есть результат, который видно сразу.</p>
+        <div class="review-header">
+          <img src="avatar5.jpg" alt="Саша" class="review-avatar">
+          <div class="review-meta">
+            Саша, ученик 8 класса
+            <span class="review-rating">★★★★★</span>
+          </div>
         </div>
+        <p class="review-text">
+          Мне нравится, что на уроках не просто теория, а много практики! После каждого занятия есть результат, который видно сразу.
+        </p>
+        <span class="read-more">Читать полностью</span>
       </div>
       
       <div class="review" style="display:none">
-        <img src="avatar7.jpg" alt="Ольга" class="review-avatar">
-        <div class="review-content">
-          <div class="review-meta">Ольга, мама 6-классницы</div>
-<span class="review-rating">★★★★★</span>
-          <p class="review-text">Долго искали подходящий формат — и наконец нашли! Спасибо за гибкий график и возможность заниматься из любой точки мира.</p>
+        <div class="review-header">
+          <img src="avatar7.jpg" alt="Ольга" class="review-avatar">
+          <div class="review-meta">
+            Ольга, мама 6-классницы
+            <span class="review-rating">★★★★★</span>
+          </div>
         </div>
-      </div>
-
-      <div class="review" style="display:none">
-        <img src="avatar6.jpg" alt="Алиса" class="review-avatar">
-        <div class="review-content">
-          <div class="review-meta">Алиса, ученица 10 класса</div>
-<span class="review-rating">★★★★★</span>
-          <p class="review-text">Сдала ОГЭ в прошлом году на 5 без нервов и запары, поэтому выбираю именно эту школу и на подготовку к ЕГЭ!</p>
-        </div>
+        <p class="review-text">
+          Долго искали подходящий формат — и наконец нашли! Спасибо за гибкий график и возможность заниматься из любой точки мира.
+        </p>
+        <span class="read-more">Читать полностью</span>
       </div>
 
       <div class="review" style="display:none">
         <div class="review-header">
-          <img src="avatar4.jpg" alt="Ольга" class="review-avatar">
+          <img src="avatar6.jpg" alt="Алиса" class="review-avatar">
+          <div class="review-meta">
+            Алиса, ученица 10 класса
+            <span class="review-rating">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text">
+          Сдала ОГЭ в прошлом году на 5 без нервов и запары, поэтому выбираю именно эту школу и на подготовку к ЕГЭ!
+        </p>
+        <span class="read-more">Читать полностью</span>
+      </div>
+
+      <div class="review" style="display:none">
+        <div class="review-header">
+          <img src="avatar4.jpg" alt="Елена" class="review-avatar">
           <div class="review-meta">
             Елена, мама ученика 5 класса
             <span class="review-rating">★★★★★</span>
@@ -1808,8 +1854,6 @@
         <span class="read-more">Читать полностью</span>
       </div>
     </div>
-
-
     
     <div class="more-reviews">
       <button class="hero-btn" id="toggleReviewsBtn">
@@ -1831,7 +1875,7 @@
       <div class="faq-answer">
         <ul>
           <li>Для учеников начальной школы (1-4 кл)  — 1000₽/час</li>
-          <li>Для учеников средней школы (5-9 кл (в том числе подготовка к ОГЭ)) — 1200₽/час</li>
+          <li>Для учеников средней школы (6-9 кл (в том числе подготовка к ОГЭ)) — 1200₽/час</li>
           <li>Для учеников старшей школы (10-11 кл (в том числе подготовка к ЕГЭ)) — 1500₽/час</li>
         </ul>
       </div>
@@ -2017,6 +2061,7 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Анимация шапки при скролле
@@ -2120,7 +2165,7 @@
       window.addEventListener('scroll', startAnimationOnScroll);
       startAnimationOnScroll();
       
-      // Управление отзывами
+  // Управление отзывами
       const reviews = document.querySelectorAll('.review');
       const toggleBtn = document.getElementById('toggleReviewsBtn');
       let visibleCount = 2;
@@ -2160,22 +2205,39 @@
       toggleBtn.addEventListener('click', toggleReviews);
 
       // Управление кнопками "Читать полностью" (только для мобильных)
-      if (window.innerWidth <= 768) {
-        document.querySelectorAll('.read-more').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const reviewText = this.previousElementSibling;
-            const isExpanded = reviewText.style.webkitLineClamp === 'unset';
-            
-            if (isExpanded) {
-              reviewText.style.webkitLineClamp = '3';
-              this.textContent = 'Читать полностью';
-            } else {
-              reviewText.style.webkitLineClamp = 'unset';
-              this.textContent = 'Свернуть';
-            }
+      function setupReadMoreButtons() {
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll('.read-more').forEach(btn => {
+            btn.addEventListener('click', function() {
+              const reviewText = this.previousElementSibling;
+              const isExpanded = reviewText.classList.contains('expanded');
+              
+              if (isExpanded) {
+                reviewText.classList.remove('expanded');
+                this.textContent = 'Читать полностью';
+              } else {
+                reviewText.classList.add('expanded');
+                this.textContent = 'Свернуть';
+              }
+            });
           });
-        });
+        } else {
+          // На десктопе скрываем кнопки "Читать полностью"
+          document.querySelectorAll('.read-more').forEach(btn => {
+            btn.style.display = 'none';
+          });
+          // И показываем полный текст отзывов
+          document.querySelectorAll('.review-text').forEach(text => {
+            text.classList.add('expanded');
+          });
+        }
       }
+
+      // Инициализация кнопок "Читать полностью"
+      setupReadMoreButtons();
+      
+      // Обновляем при изменении размера окна
+      window.addEventListener('resize', setupReadMoreButtons);
       
       // Управление формой
       function toggleForm(mode) {
@@ -2331,12 +2393,10 @@
         });
       }
 
-      // Маска телефона
+      // Маска телефона (исправленная версия)
       document.getElementById('phone').addEventListener('input', function(e) {
-        let numbers = this.value.replace(/\D/g, '');
-        let char = {0:'+7 (', 3:') ', 6:'-', 8:'-'};
-        this.value = numbers.length > 11 ? numbers.slice(0,11) : numbers;
-        this.value = this.value.split('').map((n,i) => char[i] || n).join('');
+        let x = this.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+        this.value = !x[2] ? '+7' : '+7 (' + x[2] + (x[3] ? ') ' + x[3] + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '') : '');
       });
 
       // Кнопка "Наверх"
